@@ -1,0 +1,140 @@
+#topnav {
+  width: 100%;
+  background-color: #2C2C2C;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* topnav fix for float issue */
+#topnav::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+#topnav-menu .left {
+  float: left;
+}
+
+#topnav-menu .right {
+  float: right;
+}
+
+#topnav .topnav-group {
+  display: inline-block;
+}
+
+#topnav .topnav-brand {
+  float: left;
+  margin-top: 0.5rem;
+  margin-right: 1rem;
+  font-size: 1.2rem;
+  font-family: 'Lucida Handwriting';
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+#topnav .topnav-link {
+  padding: 0.5rem 2rem;
+  text-decoration: none;
+}
+
+#topnav .icon-bars {
+  display: none;
+  padding: 0.5rem 2rem;
+  float: right;
+  cursor: pointer;
+}
+
+#topnav .topnav-link:hover, #topnav .icon-bars:hover, .topnav-dropdown:hover {
+  background-color: #111111;
+}
+
+/* TopNav Drop Down */
+.topnav-dropdown {
+  position: relative;
+}
+
+.topnav-dropdown-button {
+  cursor: pointer;
+}
+
+.topnav-dropdown-menu {
+  display: none;
+  width: 100%;
+  padding: 0.5rem 0rem;
+  background-color: green;
+}
+
+.topnav-dropdown-menu {
+  position: absolute;
+  z-index: 1;
+}
+
+/* TopNav Search Box */
+#topnav-search {
+  margin: 0rem 1rem;
+  background-color: #383838;
+  border-radius: 0.2rem;
+}
+
+#topnav-search:hover {
+  background-color: #444444;
+  outline: 1px solid #0D99FF;
+}
+
+#topnav-search input {
+  background-color: transparent;
+  color: white;
+  border: none;
+}
+
+#topnav-search input:focus {
+  outline: none;
+}
+
+#topnav-search button {
+  background-color: inherit;
+  color: inherit;
+  float: right;
+}
+
+/* max-width: 600px */
+@media screen and (max-width: 1100px) {
+  #topnav .icon-bars {
+    display: block;
+  }
+  
+  #topnav #topnav-menu {
+    display: none;
+    clear: both;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  #topnav-menu .left {
+    float: none;
+  }
+  #topnav-menu .right {
+    float: none;
+  }
+
+  #topnav .expand {
+    display: block !important;
+  }
+
+  #topnav .topnav-group{
+    display: block;
+  }
+
+  .topnav-dropdown-menu {
+    position: relative;
+  }
+
+  #topnav-search {
+    margin: 1rem 0rem;
+  }
+}

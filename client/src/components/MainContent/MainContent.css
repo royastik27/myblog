@@ -1,0 +1,13 @@
+#main-content {
+    background: rgb(79,72,193);
+    background: linear-gradient(0deg, rgba(79,72,193,1) 0%, rgba(79,72,193,1) 0%, rgba(194,24,91,1) 0%, rgba(149,30,82,1) 0%, rgba(41,161,185,1) 100%);
+}
+
+#content {
+    padding: 1rem;
+    background-color: white;
+    border-radius: 0.6rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* border: 2px solid black; */
+    height: 40rem;
+}
