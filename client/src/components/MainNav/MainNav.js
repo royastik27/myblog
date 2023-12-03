@@ -37,23 +37,23 @@ function MainNav() {
                         <Link to="/" className="topnav-link nav-link">Home</Link>
                     </div>
                     <div className="topnav-group">
-                        <Link to="/timetracker" className="topnav-link nav-link">Time Tracker</Link>
+                        <Link to="/blogs" className="topnav-link nav-link">Blogs</Link>
                     </div>
+
                     <div className="topnav-group topnav-dropdown">
                         <div onClick={() => showDropdown('account-dropdown')} className="topnav-dropdown-button topnav-link nav-link">
-                        Account &nbsp;
+                        Apps &nbsp;
                         <i className="fa-solid fa-caret-down"></i></div>
 
                         <div id="account-dropdown" className="topnav-dropdown-menu side-click-display-none">
-                            <Link to="/login" className="topnav-link nav-link">Login</Link>
-                            <Link to="/signup" className="topnav-link nav-link">Sign Up</Link>
-                            <Link to="/profile" className="topnav-link nav-link">Profile</Link>
-                            <Link to="/settings" className="topnav-link nav-link">Settings</Link>
-                            <Link to="/logout" className="topnav-link nav-link">Log out</Link>
+                            <Link to="/app1" className="topnav-link nav-link">App 1</Link>
+                            <Link to="/app2" className="topnav-link nav-link">App 2</Link>
+                            <Link to="/app3" className="topnav-link nav-link">App 3</Link>
                         </div>
                     </div>
+
                     <div className="topnav-group">
-                        <Link to="/apps" className="topnav-link nav-link">Apps</Link>
+                        <Link to="/contact" className="topnav-link nav-link">Contact</Link>
                     </div>
                 </div>
 
