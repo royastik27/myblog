@@ -55,6 +55,10 @@ function MainNav() {
                     <div className="topnav-group">
                         <Link to="/contact" className="topnav-link nav-link">Contact</Link>
                     </div>
+
+                    <div className="topnav-group">
+                        <Link to="/admin" className="topnav-link nav-link">Admin</Link>
+                    </div>
                 </div>
 
                 <div className="right">

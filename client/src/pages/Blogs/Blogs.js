@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useParams } from 'react-router-dom';
 
 import './Blogs.css';
 
 import AllBlogsSingle from './AllBlogsSingle.js';
+import BlogSingle from './BlogSingle.js';
+import FetchError from './../../components/FetchError/FetchError.js';
 
 const url = 'https://api.github.com/repos/royastik27/master-snake/contents/';
 const url2 = 'https://raw.githubusercontent.com/royastik27/vpstore/main/package.json';
@@ -16,22 +18,29 @@ function AllBlogs() {
   useEffect(() => {
 
     async function fetchData () {
-      const fetchRes = await fetch("http://localhost:3000/data/blogs/all.json");
-      
-      const allBlogsData = await fetchRes.json();
-      
-      const allBlogsEl = allBlogsData.map((element, idx) => {
-        return (
-          <AllBlogsSingle key={idx}
-            title={element.title}
-            author={element.author}
-            tags={element.tags.map(el => ` #${el}`)}
-            fvrt={false}
-          />
-        );
-      });
 
-      setAllBlogs(allBlogsEl);
+      try {
+        const fetchRes = await fetch("http://localhost:3000/data/blogs/all.json");
+        
+        const allBlogsData = await fetchRes.json();
+        
+        const allBlogsEl = allBlogsData.map((element, idx) => {
+          return (
+            <AllBlogsSingle key={idx}
+              title={element.title}
+              author={element.author}
+              tags={element.tags.map(el => ` #${el}`)}
+              refID={element.ref}
+              fvrt={false}
+            />
+          );
+        });
+  
+        setAllBlogs(allBlogsEl);
+      }
+      catch(err) {
+        setAllBlogs(<FetchError />);
+      }
     }
 
     fetchData();
@@ -40,9 +49,61 @@ function AllBlogs() {
 
   return (
     <div id="all-blogs">
+        {allBlogs}
+    </div>
+  );
+}
+
+function SingleBlog() {
+
+  const { bid } = useParams();
+
+  const [ blog, setBlog ] = useState('Loading...');
+
+  useEffect(() => {
+
+    async function getData() {
+      
+      try {
+        const fetchRes = await fetch(`http://localhost:3000/data/blogs/${bid}.json`);
+
+        const blogData = await fetchRes.json();
+
+        setBlog(<BlogSingle
+          title={blogData.title}
+          author={blogData.author}
+          content={blogData.content}
+          tags={blogData.tags}
+        />);
+      }
+      catch(err) {
+        setBlog(<FetchError />);
+      }
+
+    }
+
+    getData();
+
+  }, []);
+
+  return (
+    <div id="single-blog">
+      {blog}
+    </div>
+  );
+}
+
+function Blogs() {
+
+  return (
+    <div id="blogs">
 
       <div className="left">
-        {allBlogs}
+        <Routes>
+            <Route index element={<AllBlogs />} />
+            <Route path=":bid" element={<SingleBlog />} />
+            <Route path="*" element={<FetchError />} />
+        </Routes>
       </div>
 
       <div className="right">
@@ -57,23 +118,6 @@ function AllBlogs() {
       </div>
 
     </div>
-  );
-}
-
-function SingleBlog() {
-  return (
-    <p>Something</p>
-  );
-}
-
-function Blogs() {
-
-  return (
-    <Routes>
-        <Route index element={<AllBlogs />} />
-        <Route path=":bid" element={<p>Suck only this blog</p>} />
-        <Route path="*" element={<p>Maybe you've misspelled the URL or the corresponding blog is not available anymore</p>} />
-    </Routes>
   );
 }
 
